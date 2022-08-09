@@ -1,8 +1,9 @@
 import React from "react";
+import { Onbording } from "./screens/Onbording";
 function App() {
   return (
-    <div className="container mt-2">
-      <h1>HYDARTEQ</h1>
+    <div>
+      <Onbording/>
     </div>
   )
 }
