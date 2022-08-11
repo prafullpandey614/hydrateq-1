@@ -9,8 +9,8 @@ const ProjectScreen = () => {
   const [pro,setPro] = React.useState([]);
   useEffect(() => {
     axios.get(`http://sih-hydrateq.herokuapp.com/project/${params.id}`)
-      .then(response =>{ setPro(response.data.projects)
-      console.log(response.data.projects)});
+      .then(response =>{ setPro(response.data)
+      });
   }, [params.id]);
   return (
     <Box
@@ -20,7 +20,7 @@ const ProjectScreen = () => {
             minHeight="100vh"
             bgcolor="#d2e2d8"
         >
-          <MainProcess/>
+          <MainProcess pro={pro} />
         </Box>
   )
 }
