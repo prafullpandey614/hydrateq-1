@@ -5,14 +5,18 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import axios from "axios";
-// import DialogContentText from '@mui/material/DialogContentText';
+import { useNavigate } from "react-router-dom";
+import ProjectScreen from "../screens/ProjectScreen";
 import DialogTitle from '@mui/material/DialogTitle';
 import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
 const Projects = (props) => {
   const [name, setName] = React.useState( "");
   const [open, setOpen] = React.useState(false);
   const [desc, setDesc] = React.useState( "");
-
+  let navigate = useNavigate();
+  const handleRoute = (id) => {
+    navigate(`/project/${id}`); //clicked 
+  } 
   const handleOnclick=()=>{
     console.log("clicked")
     setOpen(true);
@@ -25,15 +29,15 @@ const Projects = (props) => {
     console.log("clicked create")
     setOpen(false);
     console.log(name,desc)
-    // const Project = {
-    //   name:name,
-    //   aqurename: desc
-    // };
+    props.handleAddProject(name,desc);
     axios.post(`https://sih-hydrateq.herokuapp.com/`,{"name" :name ,"desc":desc})
       .then(res => {
         console.log(res);
         console.log(res.data);
+      }).catch(err => {
+        console.log(err);
       })
+      props.handleAddProject([name ,desc]);
     }
   return (
     <Stack>
@@ -41,17 +45,18 @@ const Projects = (props) => {
       {props.project.map((project, index) => (
           <Stack my={1} py={1} key={index}>
             <Card   sx={{ minWidth: 275 ,minHeight:40 }} style={{backgroundColor: "white"}}>
-              <CardActionArea href="localhost">
+              <CardActionArea onClick={()=>handleRoute(project[0])}>
               <Stack pt={1} alignItems="center"  ><Typography variant="subtitle1">Project name : {project[1]}</Typography></Stack>
               </CardActionArea>
             </Card>
           </Stack>
       ))}
        <Stack>
-            <Card   sx={{ minWidth: 275 ,minHeight:40 }} style={{backgroundColor: "white"}}>
+            <Card sx={{ minWidth: 275 ,minHeight:40 }} style={{backgroundColor: "white"}}>
             <CardActionArea onClick={handleOnclick}>
-              <Stack alignItems="center" justifyContent="center" px={2} py={2}>
-              <Button ><CreateNewFolderIcon />new Project</Button>
+              <Stack direction='row' spacing={1} alignItems="center" justifyContent="center" px={2} py={2}>
+              <CreateNewFolderIcon />
+              <p>new Project</p>
                 </Stack>
                 </CardActionArea>
             </Card>
@@ -60,9 +65,6 @@ const Projects = (props) => {
     <Dialog open={open} onClose={handleClose}>
         <DialogTitle>New Project</DialogTitle>
         <DialogContent>
-          {/* <DialogContentText>
-            Creat
-          </DialogContentText> */}
           <TextField
             autoFocus
             margin="dense"
