@@ -8,7 +8,7 @@ export const Onbording = () => {
       axios.get("http://sih-hydrateq.herokuapp.com/")
         .then(response =>{ setPro(response.data.projects.project)
         console.log(response.data.projects.project)});
-    }, []);
+    }, [pro]);
     return (
         <Box
             display="flex"

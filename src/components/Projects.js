@@ -1,5 +1,5 @@
 import React from "react"
-import { Typography  , Stack ,Card, Button} from "@mui/material";
+import { Typography  , Stack ,Card, Button ,CardActionArea} from "@mui/material";
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -12,6 +12,7 @@ const Projects = (props) => {
   const [name, setName] = React.useState( "");
   const [open, setOpen] = React.useState(false);
   const [desc, setDesc] = React.useState( "");
+
   const handleOnclick=()=>{
     console.log("clicked")
     setOpen(true);
@@ -25,7 +26,7 @@ const Projects = (props) => {
     setOpen(false);
     console.log(name,desc)
     const Project = {
-      name: name,
+      name:name,
       aqurename: desc
     };
     axios.post(`https://sih-hydrateq.herokuapp.com/`,{Project})
@@ -40,16 +41,19 @@ const Projects = (props) => {
       {props.project.map((project, index) => (
           <Stack my={1} py={1} key={index}>
             <Card   sx={{ minWidth: 275 ,minHeight:40 }} style={{backgroundColor: "white"}}>
+              <CardActionArea href="localhost">
               <Stack pt={1} alignItems="center"  ><Typography variant="subtitle1">Project name : {project[1]}</Typography></Stack>
-              <Stack alignItems="center" ><Button>Open</Button></Stack>
+              </CardActionArea>
             </Card>
           </Stack>
       ))}
        <Stack>
             <Card   sx={{ minWidth: 275 ,minHeight:40 }} style={{backgroundColor: "white"}}>
+            <CardActionArea onClick={handleOnclick}>
               <Stack alignItems="center" justifyContent="center" px={2} py={2}>
-                <Button onClick={handleOnclick}><CreateNewFolderIcon />new Project</Button>
+              <Button ><CreateNewFolderIcon />new Project</Button>
                 </Stack>
+                </CardActionArea>
             </Card>
           </Stack>
     </Stack>
