@@ -25,11 +25,11 @@ const Projects = (props) => {
     console.log("clicked create")
     setOpen(false);
     console.log(name,desc)
-    const Project = {
-      name:name,
-      aqurename: desc
-    };
-    axios.post(`https://sih-hydrateq.herokuapp.com/`,{Project})
+    // const Project = {
+    //   name:name,
+    //   aqurename: desc
+    // };
+    axios.post(`https://sih-hydrateq.herokuapp.com/`,{"name" :name ,"desc":desc})
       .then(res => {
         console.log(res);
         console.log(res.data);
