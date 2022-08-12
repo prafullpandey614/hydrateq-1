@@ -46,7 +46,7 @@ export default function Header({
           {pro}
         </Typography>
         <div className={classes.spacer} />
-        <IconButton
+        {/* <IconButton
           color="inherit"
           aria-label="open drawer"
           onClick={toggleDarkMode}
@@ -54,7 +54,7 @@ export default function Header({
           className={classes.rightIcons}
         >
           {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
-        </IconButton>
+        </IconButton> */}
       </Toolbar>
     </AppBar>
   );

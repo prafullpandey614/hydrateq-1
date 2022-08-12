@@ -111,13 +111,13 @@ export default function Sidebar({ open, handleDrawerClose }) {
           </ListItem>
         </List>
         <Divider />
-        <List>
+        {/* <List>
           <ListItem button>
             <ListItemIcon >
             </ListItemIcon>
             <ListItemText primary="Pipper Diagram" />
           </ListItem>
-          </List>
+          </List> */}
           
       </div>
     </Drawer>

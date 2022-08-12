@@ -1,9 +1,10 @@
-import React from 'react'
-
-const Graph = () => {
+import React  ,{useState} from 'react'
+import TopBar from './TopBar'
+const Graph = (props) => {
   return (
-    <div>Graph</div>
+    <>
+     <TopBar darkmode = {props.darkmode}/>
+    </>
   )
 }
-
 export default Graph
