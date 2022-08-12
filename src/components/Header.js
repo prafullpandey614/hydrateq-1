@@ -4,8 +4,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
 import { IconButton } from '@mui/material';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
+// import Brightness4Icon from '@mui/icons-material/Brightness4';
+// import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
@@ -26,8 +26,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header({
   handleDrawerToggle,
-  toggleDarkMode,
-  darkMode,
+  // toggleDarkMode,
+  // darkMode,
   pro
 }) {
   const classes = useStyles();

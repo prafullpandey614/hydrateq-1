@@ -3,7 +3,7 @@ import {Box ,  Stack} from "@mui/material"
 
 const TopBar = (props) => {
   return (
-    <Box bgcolor="#424242" sx={{ boxShadow: 3  ,  width: '50%'}} >
+    <Box bgcolor="#424242" sx={{ boxShadow: 3}} >
         <Stack>
             topbar
         </Stack>

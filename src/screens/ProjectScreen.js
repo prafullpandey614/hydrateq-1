@@ -2,7 +2,7 @@ import React ,{useEffect ,useState}from 'react'
 import axios from "axios";
 import {Stack ,Box , Grid ,Paper} from "@mui/material"
 import { useParams } from 'react-router-dom';
-import { MainProcess } from '../components/MainProcess';
+
 import { Description } from '@mui/icons-material';
 import { GraphButtons } from '../components/GraphButtons';
 import { styled } from '@mui/material/styles';
