@@ -2,6 +2,6 @@ import React from 'react'
 
 export const AddGraph = () => {
   return (
-    <div>AddGraph-Praful Pandey</div>
+    <div>AddGraph- Prafull Pandey</div>
   )
 }
