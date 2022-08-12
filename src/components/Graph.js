@@ -1,10 +1,13 @@
 import React  ,{useState} from 'react'
 import TopBar from './TopBar'
+import { Stack } from '@mui/system'
 const Graph = (props) => {
   return (
-    <>
-     <TopBar darkmode = {props.darkmode}/>
-    </>
+     <Stack>
+    <stack>
+     <TopBar/>
+    </stack>
+    </Stack>
   )
 }
 export default Graph

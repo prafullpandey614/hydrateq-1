@@ -105,7 +105,7 @@ const ProjectScreen = () => {
         })}
       >
         <div className={classes.drawerHeader} />
-        <Graph  project_id ={params.id} darkMode={darkMode} />
+        <Graph  project_id ={params.id} />
       </main>
     </div>
   </ThemeProvider>
