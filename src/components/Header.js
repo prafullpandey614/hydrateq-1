@@ -10,8 +10,8 @@ import { IconButton } from '@mui/material';
 import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   appbar: {
-    backgroundColor: theme.palette.background.default,
-    color: theme.palette.text.primary,
+    backgroundColor: "#0295A9",
+    color: "  #FFFFFF",
     [theme.breakpoints.up("sm")]: {
       zIndex: theme.zIndex.drawer + 1
     }

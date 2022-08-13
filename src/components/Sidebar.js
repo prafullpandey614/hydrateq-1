@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Drawer from "@material-ui/core/Drawer";
 import Divider from "@material-ui/core/Divider";
 // import IconButton from "@material-ui/core/IconButton";
@@ -15,27 +15,57 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 // import ExploreIcon from "@mui/icons-material/Explore";
 // import FavoriteIcon from "@mui/icons-material/Favorite";
 import SettingsIcon from "@mui/icons-material/Settings";
-
-const drawerWidth = 200;
+import { Button } from "@mui/material";
+import UploadFileIcon from '@mui/icons-material/UploadFile';
+import axios from "axios"
+const drawerWidth = 220;
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
     width: drawerWidth,
-    flexShrink: 0
+    flexShrink: 0,
+    
   },
   drawerPaper: {
-    width: drawerWidth
+    width: drawerWidth,
+    backgroundColor: "#0295A9",
+    color: "  #FFFFFF",
   },
   drawerHeader: {
     display: "flex",
     alignItems: "center",
     padding: theme.spacing(0, 1),
     ...theme.mixins.toolbar,
-    justifyContent: "flex-end"
+    justifyContent: "flex-end",
+   
   }
 }));
+export default function Sidebar({ open, handleDrawerClose , project_id ,statistics}) {
+const [State , setState] = useState(null)
+// const submit =() =>{
+//   console.log(state)
+//   axios.post(`https://sih-hydrateq.herokuapp.com/csv/${project_id}`, state)
+//   .then(res => { 
+//       console.log(res.data)})
+// }
+const handleSubmit = async (event) => { // Reset status
+  const data = {
+    name : "file" ,
+    file: State
+  }
+  event.preventDefault();
+  const resp = await axios.post(`http://127.0.0.1:5000/csv/${project_id}`, data, {
+    headers: {
+      "content-type": "multipart/form-data",
+    },
+  });
+  // console.log(resp.data);
+  statistics(resp.data);
+};
+const handleInputChange =(e)  =>{
+    setState(e.target.files[0])
+}
 
-export default function Sidebar({ open, handleDrawerClose }) {
   const classes = useStyles();
   return (
     <Drawer
@@ -103,22 +133,34 @@ export default function Sidebar({ open, handleDrawerClose }) {
           </ListItem>
           <ListItem button onClick={handleDrawerClose} >
             <ListItemIcon  >
-            
-            <ChevronLeftIcon />
-         
-            </ListItemIcon>
+
+              <ChevronLeftIcon />
+
+            </ListItemIcon >
             <ListItemText primary="Back" />
           </ListItem>
         </List>
         <Divider />
-        {/* <List>
-          <ListItem button>
-            <ListItemIcon >
-            </ListItemIcon>
-            <ListItemText primary="Pipper Diagram" />
+        <List>
+        <form onSubmit={handleSubmit}>
+          <ListItem>
+          {/* <ListItemIcon button >          
+         < UploadFileIcon/>
+            </ListItemIcon> */}
+              <input
+                type="file"
+                onChange={handleInputChange}
+                inputProps={{
+                  accept:
+                    ".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel",
+                }}
+              />
           </ListItem>
-          </List> */}
-          
+          <ListItem>
+          <button type="submit">Save</button>
+          </ListItem>
+          </form>
+        </List>
       </div>
     </Drawer>
   );

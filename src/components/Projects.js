@@ -1,24 +1,30 @@
-import React from "react"
-import { Typography  , Stack ,Card, Button ,CardActionArea} from "@mui/material";
+import React, { useEffect } from "react"
+import { Typography, Stack, Card, Button, CardActionArea } from "@mui/material";
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import ProjectScreen from "../screens/ProjectScreen";
 import DialogTitle from '@mui/material/DialogTitle';
 import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
 const Projects = (props) => {
-  const [name, setName] = React.useState( "");
+  const [newProject, setNewProject] = React.useState(null)
+  useEffect(() => {
+    setNewProject(props.project)
+  }, [props.project]);
+  console.log(newProject)
+
+  const [name, setName] = React.useState("");
   const [open, setOpen] = React.useState(false);
-  const [desc, setDesc] = React.useState( "");
+  const [desc, setDesc] = React.useState("");
   let navigate = useNavigate();
   const handleRoute = (id) => {
+    console.log("route", id)
     navigate(`/project/${id}`); //clicked 
-  } 
-  const handleOnclick=()=>{
-    console.log("clicked")
+  }
+  const handleOnclick = () => {
+
     setOpen(true);
   }
   const handleClose = () => {
@@ -28,41 +34,45 @@ const Projects = (props) => {
     e.preventDefault();
     console.log("clicked create")
     setOpen(false);
-    console.log(name,desc)
-    props.handleAddProject(name,desc);
-    axios.post(`https://sih-hydrateq.herokuapp.com/`,{"name" :name ,"desc":desc})
+    console.log(name, desc)
+    axios.post(`https://sih-hydrateq.herokuapp.com/`, { "name": name, "desc": desc })
       .then(res => {
-        console.log(res);
         console.log(res.data);
+        console.log("callback")  //clicked
+        const newP = [...newProject];
+        newP.push([res.data.id, name, desc]);
+        setNewProject(newP);
+        console.log(newProject)
       }).catch(err => {
         console.log(err);
       })
-      props.handleAddProject([name ,desc]);
-    }
+
+  }
+
   return (
     <Stack>
-    <Stack>
-      {props.project.map((project, index) => (
+      <Stack>
+        {newProject === null ? "" : (newProject.map((project, index) => (
           <Stack my={1} py={1} key={index}>
-            <Card   sx={{ minWidth: 275 ,minHeight:40 }} style={{backgroundColor: "white"}}>
-              <CardActionArea onClick={()=>handleRoute(project[0])}>
-              <Stack pt={1} alignItems="center"  ><Typography variant="subtitle1">Project name : {project[1]}</Typography></Stack>
+            <Card sx={{ minWidth: 275, minHeight: 40 }} style={{ backgroundColor: "white" }}>
+              <CardActionArea onClick={() => handleRoute(project[0])}>
+                <Stack pt={1} alignItems="center"  ><Typography variant="subtitle1">Project name : {project[1]}</Typography></Stack>
               </CardActionArea>
             </Card>
           </Stack>
-      ))}
-       <Stack>
-            <Card sx={{ minWidth: 275 ,minHeight:40 }} style={{backgroundColor: "white"}}>
+        )))}
+        <Stack>
+          <Card sx={{ minWidth: 275, minHeight: 40 }} style={{ backgroundColor: "white" }}>
             <CardActionArea onClick={handleOnclick}>
               <Stack direction='row' spacing={1} alignItems="center" justifyContent="center" px={2} py={2}>
-              <CreateNewFolderIcon />
-              <p>new Project</p>
-                </Stack>
-                </CardActionArea>
-            </Card>
-          </Stack>
-    </Stack>
-    <Dialog open={open} onClose={handleClose}>
+                <CreateNewFolderIcon />
+                <p>new Project</p>
+              </Stack>
+            </CardActionArea>
+          </Card>
+        </Stack>
+      </Stack>
+      <Dialog open={open} onClose={handleClose}>
         <DialogTitle>New Project</DialogTitle>
         <DialogContent>
           <TextField
@@ -75,7 +85,7 @@ const Projects = (props) => {
             variant="standard"
             onChange={(e) => setName(e.target.value)}
           />
-           <TextField
+          <TextField
             autoFocus
             margin="dense"
             label="Project Description"
@@ -91,7 +101,7 @@ const Projects = (props) => {
           <Button onClick={handleCreate}>Create</Button>
         </DialogActions>
       </Dialog>
-  </Stack>
+    </Stack>
   )
 }
 

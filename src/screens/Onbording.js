@@ -3,28 +3,25 @@ import axios from "axios";
 import Box from "@mui/material/Box"
 import Projects from '../components/Projects'
 export const Onbording = () => {
+    useEffect(() => {
+        axios.get("http://sih-hydrateq.herokuapp.com/")
+          .then(response =>{ setPro(response.data.projects)
+        //   console.log(response.data.projects)
+        });
+      }, []);
     const [pro,setPro] = React.useState([]);
     
-    const handleAddProject = (name,desc) => {
-        console.log("callback")  //clicked
-        const newProject = [...pro];        
-        newProject.push([" ",name,desc]);       
-        setPro(newProject);
-    }   //clicked
-    useEffect(() => {
-      axios.get("http://sih-hydrateq.herokuapp.com/")
-        .then(response =>{ setPro(response.data.projects)
-        console.log(response.data.projects)});
-    }, []);
+   
+    
     return (
         <Box
             display="flex"
             justifyContent="center"
             alignItems="center"
             minHeight="100vh"
-            bgcolor="#d2e2d8"
+            bgcolor="#12ADC1"
         >
-        <Projects project={pro} handleAddProject={handleAddProject}/>
+        <Projects project={pro} />
         </Box>
     )
 }
