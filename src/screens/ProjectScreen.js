@@ -2,7 +2,7 @@ import React ,{useEffect ,useState}from 'react'
 import axios from "axios";
 import { useParams } from 'react-router-dom';
 
-import {Box ,Stack} from "@mui/material";
+import {Box ,Stack ,Button} from "@mui/material";
 import clsx from "clsx";
 import { useNavigate } from "react-router-dom";
 
@@ -34,6 +34,10 @@ const useStyles = makeStyles((theme) => ({
     }
 ))
 const ProjectScreen = () => {
+  const handleRoute = (id) => {
+    console.log("route", id)
+    navigate(`/analysis/${id}`); //clicked 
+  }
   const navigate = useNavigate();
   const params = useParams();
   const [pro,setPro] = React.useState({}); 
@@ -64,26 +68,7 @@ const ProjectScreen = () => {
   const classes = useStyles();
   return ( 
     <Stack>
-    <Header
-        handleDrawerToggle={handleDrawerToggle}
-        toggleDarkMode={toggleDarkMode}
-        darkMode={darkMode}
-        pro={pro.project_name}
-      />
-            <Sidebar handleDrawerClose={handleDrawerClose} open={open} project_id={params.id}  statistics={statistics}/>
-      <main      className={clsx(classes.content, {
-          [classes.contentShift]: open
-        })}>
-    <Box  
-    mt={8}
-            minHeight="100vh"
-            bgcolor="#12ADC1">
-      <Stack>
-        <Graph  project_id ={params.id}/>
-        <Statistics statisticsData={statisticsData}/>
-      </Stack>
-    </Box>
-    </main>
+    <Button onClick={() => handleRoute(params.id)}>Analysis</Button>
     </Stack>
   )
 }

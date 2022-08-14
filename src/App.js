@@ -10,12 +10,14 @@ import Projects from "./components/Projects";
 import { Home } from "./screens/Home";
 import ProjectScreen from "./screens/ProjectScreen";
 import NotFound from "./screens/NotFound";
+import Analysis from "./screens/Analysis";
 function App() {
   return (
     <div>
       <Routes>
         <Route exact path="/" element={<Home/>}/>
         <Route  path="/project/:id" element={ <ProjectScreen/>} />
+        <Route path="/analysis/:id" element={<Analysis/>}/>
         <Route path="*" element={<NotFound/>}/>
         </Routes>
     </div>

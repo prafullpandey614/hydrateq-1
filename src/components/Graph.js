@@ -29,7 +29,6 @@ return (
   <Stack>
     <Stack direction="row" spacing={1} m={1}>
       {graphs.map((item, index) => {
-        
         return (
           <Button key={index}
             variant="contained"
