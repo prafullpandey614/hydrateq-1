@@ -16,9 +16,10 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route exact path="/" element={<Prafull/>}/>
+        <Route exact path="/" element={<Home/>}/>
         <Route  path="/project/:id" element={ <ProjectScreen/>} />
         <Route path="/analysis/:id" element={<Analysis/>}/>
+        <Route path="/prafull" element={<Prafull/>}/>
         <Route path="*" element={<NotFound/>}/>
         </Routes>
     </div>
