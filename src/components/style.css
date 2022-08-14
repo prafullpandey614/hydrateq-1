@@ -1,0 +1,21 @@
+.btn{
+    
+    background-color: pink;
+    margin: 1rem 0.4rem;
+    border-radius: 0.5rem;
+    font-size: 0.5rem;
+    text-align: center;
+    width: 30%;
+}
+.btndiv{
+    font-size: 0.8rem;
+}
+.btn-generate{
+    padding: 1rem 0.4rem;
+    background-color: greenyellow;
+    margin: 1rem auto;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    text-align: center;
+    width: 30%;
+}
