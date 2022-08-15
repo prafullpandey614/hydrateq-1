@@ -11,11 +11,11 @@ import Paper from '@mui/material/Paper';
 
 
 const Statistics = (props) => {
-  const [data, setData] = React.useState([]);
-  useEffect(()=>{
-    setData(props.desc);
-    // console.log(props.desc);
-  },[props.desc] ) 
+  const [data, setData] = React.useState(props.desc);
+  // useEffect(()=>{
+  //   setData(props.desc);
+  //   // console.log(props.desc);
+  // },[props.desc] ) 
 
   function createData(name , mean  , std , min ,max ,percentile75) {
     if(data.length === 0) {

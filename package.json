@@ -20,6 +20,7 @@
     "cuid": "^2.1.8",
     "dotenv": "^16.0.1",
     "electron-is-dev": "^1.2.0",
+    "file-saver": "^2.0.5",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-dropzone": "^14.2.2",
