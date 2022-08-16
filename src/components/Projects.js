@@ -35,7 +35,7 @@ const Projects = (props) => {
     console.log("clicked create")
     setOpen(false);
     console.log(name, desc)
-    axios.post(`https://sih-hydrateq.herokuapp.com/`, { "name": name, "desc": desc })
+    axios.post(`http://127.0.0.1:5000`, { "name": name, "desc": desc })
       .then(res => {
         console.log(res.data);
         console.log("callback")  //clicked

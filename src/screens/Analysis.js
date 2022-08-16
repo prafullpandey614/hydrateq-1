@@ -11,8 +11,8 @@ import NewSidebar from '../components/NewSidebar';
 import GraphImage from '../components/GraphImage';
 import Interpretaion from '../components/Interpretaion';
 import Statistics from '../components/Statistics';
-import ReactDOMServer from 'react-dom/server';
-import jsPDF from 'jspdf';
+// import ReactDOMServer from 'react-dom/server';
+// import jsPDF from 'jspdf';
 const Analysis = () => {
   // const navigate = useNavigate();
   const params = useParams();
@@ -20,21 +20,27 @@ const Analysis = () => {
   const [pro, setPro] = React.useState([]);
   const [description, setDescription] = React.useState([]);
   const [sar , setSar] = React.useState([]);
+  const [MeanSar , setMeanSar] = React.useState([]);
   // const handelDocument =()=>{
   //     let doc = new jsPDF();
   //     doc.fromHTML(ReactDOMServer.renderToStaticMarkup(this.render()));
   //     doc.save("myDocument.pdf");
   // }
   useEffect(() => {
+    axios.get(`http://127.0.0.1:5000/wqi/${params.id}`)
+            .then(res => {
+                setMeanSar(res.data.sar.mean)
+                //console.log()
+            })
+            .catch(err => console.log(err))
     axios.get(`http://127.0.0.1:5000/project/${params.id}`)
       .then(response => {
         setPro(response.data)
       });
     axios.get(`http://127.0.0.1:5000/csv/${params.id}`)
       .then(response => { setDescription(response.data) })
-      .catch(err => {
-        // console.log(err)
-      })
+      .catch(err => (console.log(err)));
+
       axios.get(`http://127.0.0.1:5000/sar/${params.id}`)
       .then(response => {
         setSar(response.data)
@@ -44,14 +50,14 @@ const Analysis = () => {
         console.log(err)
       })
   }, [params.id]);
-  // console.log(description)
+  console.log(description)
   // console.log(pro)
   // console.log(params.id)
   if(description == null){
     setDisplay(false)}
   const [project, setProject] = React.useState({});
   useEffect(() => {
-    axios.get(`http://sih-hydrateq.herokuapp.com/`)
+    axios.get(`http://127.0.0.1:5000`)
       .then(res => {
         setProject(res.data.projects)
         // console.log(res.data.project)
@@ -82,9 +88,13 @@ const Analysis = () => {
             }
           </Stack>
         </Grid>
-      </Grid>
+      </Grid> 
+      <Stack spacing={2} mt={2}> <Typography  sx={{ textDecoration: 'underline' }} variant='h5' align='center'> Interpretaion</Typography></Stack>
       <Box mx={2} my={2} px={1} py={2} bgcolor="#D9D9D9">
-        <Interpretaion />
+      {(description.length===0)? (<Typography>No data avialble </Typography>):
+            (<Interpretaion desc={description}  project_id={params.id} MeanSar={MeanSar}/>)
+            }
+        
       </Box>
       </div>)}
       {/* <Button onClick={handelDocument}>DOWNLOAD ANALYSIS</Button> */}
