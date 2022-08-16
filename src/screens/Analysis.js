@@ -5,18 +5,26 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import { Stack } from '@mui/system';
+import { Stack  , Button} from '@mui/material';
 import { Typography } from '@mui/material';
 import NewSidebar from '../components/NewSidebar';
 import GraphImage from '../components/GraphImage';
 import Interpretaion from '../components/Interpretaion';
 import Statistics from '../components/Statistics';
+import ReactDOMServer from 'react-dom/server';
+import jsPDF from 'jspdf';
 const Analysis = () => {
   // const navigate = useNavigate();
   const params = useParams();
   const [Display, setDisplay] = React.useState(true);
   const [pro, setPro] = React.useState([]);
   const [description, setDescription] = React.useState([]);
+  const [sar , setSar] = React.useState([]);
+  // const handelDocument =()=>{
+  //     let doc = new jsPDF();
+  //     doc.fromHTML(ReactDOMServer.renderToStaticMarkup(this.render()));
+  //     doc.save("myDocument.pdf");
+  // }
   useEffect(() => {
     axios.get(`http://127.0.0.1:5000/project/${params.id}`)
       .then(response => {
@@ -27,7 +35,14 @@ const Analysis = () => {
       .catch(err => {
         // console.log(err)
       })
-          
+      axios.get(`http://127.0.0.1:5000/sar/${params.id}`)
+      .then(response => {
+        setSar(response.data)
+        // console.log(response.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }, [params.id]);
   // console.log(description)
   // console.log(pro)
@@ -43,6 +58,8 @@ const Analysis = () => {
       })
       .catch(err => console.log(err))
   }, [])
+
+  // console.log(sar)
   return (
     <Box
       minHeight="100vh"
@@ -57,16 +74,11 @@ const Analysis = () => {
           <Stack spacing={2} mt={2}>
             <Typography variant='h5' style={{ color: "black" }} align="center"
               sx={{ textDecoration: 'underline' }} > Visualization</Typography>
-
-
-
-
-            
               {(description.length===0)? (<Typography>No data avialble </Typography>):
             ( <Stack spacing={5}><GraphImage id={params.id} /></Stack>)}
             
             {(description.length===0)? (<Typography>No data avialble </Typography>):
-            (<Statistics desc={description} />)
+            (<Statistics desc={description}  sar={sar}/>)
             }
           </Stack>
         </Grid>
@@ -75,6 +87,7 @@ const Analysis = () => {
         <Interpretaion />
       </Box>
       </div>)}
+      {/* <Button onClick={handelDocument}>DOWNLOAD ANALYSIS</Button> */}
     </Box>
 
   )

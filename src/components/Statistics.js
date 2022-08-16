@@ -7,38 +7,72 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import TablePagination from '@mui/material/TablePagination';
 
-
-
+const columns = [
+  { id: 'name', label: 'Sample Name', minWidth: 120 },
+  { id: 'sar', label: 'Sodium adsorption ratio (SAR)', minWidth: 170 },
+  {
+    id: 'solNa',
+    label: 'Soluble Na%',
+    minWidth: 150,
+    align: 'right',
+    format: (value) => value.toLocaleString('en-US'),
+  },
+  {
+    id: 'rsc',
+    label: 'residual sodium carbonate(RSC)',
+    minWidth: 170,
+    align: 'right',
+    format: (value) => value.toLocaleString('en-US'),
+  },
+  {
+    id: 'wqi',
+    label: 'Water Quality Index(WQI)',
+    minWidth: 170,
+    align: 'right',
+    format: (value) => value.toFixed(2),
+  },
+];
 const Statistics = (props) => {
-  const [data, setData] = React.useState(props.desc);
-  // useEffect(()=>{
-  //   setData(props.desc);
-  //   // console.log(props.desc);
-  // },[props.desc] ) 
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
+  const data = props.desc
+  const sar_data = props.sar;
 
+
+  function createData1(name,rsc,sar,solNa,wqi) {
+    if(data.length === 0) { 
+      return null
+    }
+    return {name , rsc,sar,solNa,wqi};
+  }
+  const rows1 = [
+  ];
+  sar_data.map((data , index) => {
+    let name = "sample" + (index+1);
+    let item = createData1(name ,data.rsc, data.sar, data.solNa, data.wqi);
+    rows1.push(item);
+  });
+  console.log(rows1)
+  // ----------------------------Table 1---------------------------------------
   function createData(name , mean  , std , min ,max ,percentile75) {
     if(data.length === 0) {
       return null
     }
-    return { name,mean , std , min ,max , percentile75};
+    return { name ,mean , std , min ,max , percentile75};
   }
-  // console.log(props.desc)
   
-  
+  // console.log(sar_data)
   // console.log(data)
-  // props.desc.map((item,index)=>{
-  //   console.log(item)
-  // })
-  // const arr =[]  
-  // for (const [key, value] of Object.entries(props.desc)) {
-  //   // console.log(`${key}: ${value}`);
-  //   arr.push(key)
-  // }
-  // for (let i = 1; i < arr.length; i++) {
-  //   console.log(arr[i])
-  //   // createData(arr[i],()
-  // }
+  
   const rows = [
     createData('pH',data.pH[1],data.pH[2],data.pH[3], data.pH[7],data.pH[6]),
     createData('Ca',data.Ca[1],data.Ca[2],data.Ca[3], data.Ca[7],data.Ca[6]),
@@ -62,7 +96,7 @@ const Statistics = (props) => {
 <Stack>
 
 
-{/* ------------------------TBALE --------------------------------------------------- */}
+{/* ------------------------TBALE 1--------------------------------------------------- */}
 <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
@@ -99,40 +133,62 @@ const Statistics = (props) => {
 
 
 {/* ------------------------tBALE2 ----------------------> */}
-<Stack >
 
-                 <Stack>
-          <Typography variant='outline1' style={{color:"black"}} align="center">SAR,Soluble Na %,RSC And WQI </Typography></Stack>
-   </Stack>
-<TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.name}
+
+<Paper sx={{ width: '100%' }} mt={3}>
+      <TableContainer sx={{ maxHeight: 440 }}>
+        <Table stickyHeader aria-label="sticky table">
+          <TableHead>
+            <TableRow>
+              <TableCell align="center" colSpan={6}>
+               
+              SAR,Soluble Na %,RSC And WQI
               </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+            <TableRow>
+              {columns.map((column) => (
+                <TableCell
+                  key={column.id}
+                  align={column.align}
+                  style={{ top: 57, minWidth: column.minWidth }}
+                >
+                  {column.label}
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows1
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((row) => {
+                return (
+                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                    {columns.map((column) => {
+                      const value = row[column.id];
+                      return (
+                        <TableCell key={column.id} align={column.align}>
+                          {column.format && typeof value === 'number'
+                            ? column.format(value)
+                            : value}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                );
+              })}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[10, 25, 100]}
+        component="div"
+        count={rows.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
+    </Paper>
 </Stack>
 
   )
