@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-import { Stack } from '@mui/material';
+import { Stack  , Card ,CardContent ,Typography} from '@mui/material';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -43,77 +43,133 @@ const GraphImage = (props) => {
   }
   return (
     <Stack direction="column" spacing={1}>
-      <Stack direction="row" spacing={2}>
+      <Stack direction="row" spacing={3}>
+      <Card sx={{ minWidth: 250 }} onClick={() => imageClick("trianglePiperdiagram")}>
           <img
             src={`http://127.0.0.1:5000/graph/trianglePiperdiagram/${props.id}`}
             alt="trianglePiperdiagram"
             loading="lazy"
             width="250px"
             height="176.57px"
-            onClick={() => imageClick("trianglePiperdiagram")}
           />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              Triangle Piper Diagram
+            </Typography>
+          </CardContent>
+          </Card>
+          <Card sx={{ minWidth: 250 }} onClick={() => imageClick("gibbsDiagram")}>
           <img
             src={`http://127.0.0.1:5000/graph/gibbsDiagram/${props.id}`}
             alt="gibsDiagram"
             loading="lazy"
             width="250px"
             height="176.57px"
-            onClick={() => imageClick("gibbsDiagram")}
           />
-        
+          <CardContent>   
+            <Typography gutterBottom variant="h5" component="div">
+              Gibbs Diagram
+            </Typography>
+          </CardContent>
+
+        </Card>
+        <Card sx={{ minWidth: 250 }} onClick={() => imageClick("rectanglePiper")}>
           <img
             src={`http://127.0.0.1:5000/graph/rectanglePiper/${props.id}`}
             alt="rectanglePiper"
             loading="lazy"
             width="250px"
             height="176.57px"
-            onClick={() => imageClick("rectanglePiper")}
           />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              Rectangle Piper
+            </Typography>
+          </CardContent>
+
+          </Card>
+          <Card sx={{ minWidth: 250 }} onClick={() => imageClick("durvoDiagram")}>
           <img
             src={`http://127.0.0.1:5000/graph/durvoDiagram/${props.id}`}
             alt="durvoDiagram"
             loading="lazy"
             width="250px"
             height="176.57px"
-            onClick={() => imageClick("durvoDiagram")}
           />
-        
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              Durvo Diagram
+            </Typography>
+          </CardContent>
+
+        </Card>
       </Stack>
+
       <Stack direction="row" spacing={2}>
+        <Card sx={{ minWidth: 250 }} onClick={() => imageClick("hfedDiagram")}>
         <img
           src={`http://127.0.0.1:5000/graph/hfedDiagram/${props.id}`}
           alt="hfedDiagram"
           loading="lazy"
           width="250px"
           height="176.57px"
-          onClick={() => imageClick("hfedDiagram")}
         />
+        <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          Hfed Diagram
+        </Typography>
+      </CardContent>
+        </Card>
+        <Card sx={{ minWidth: 250 }} onClick={() => imageClick("chadhaDiagram")}>
         <img
           src={`http://127.0.0.1:5000/graph/chadhaDiagram/${props.id}`}
           alt="chadhaDiagram"
           loading="lazy"
           width="250px"
           height="176.57px"
-          onClick={() => imageClick("chadhaDiagram")}
         />
+        <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          Chadha Diagram
+        </Typography>
+      </CardContent>
+
+        </Card>
+        <Card sx={{ minWidth: 250 }} onClick={() => imageClick("color_piperDiagram")} >
         <img
-            src={`http://127.0.0.1:5000/graph/gibbsDiagram/${props.id}`}
+            src={`http://127.0.0.1:5000/graph/color_piperDiagram/${props.id}`}
             alt="gibsDiagram"
             loading="lazy"
             width="250px"
             height="176.57px"
-          onClick={() => imageClick("gibbsDiagram")}
-
           />
+
+
+          <CardContent>
+
+
+            <Typography gutterBottom variant="h5" component="div">
+              Color Piper Diagram
+            </Typography>
+          </CardContent>
+
+        </Card>
+        <Card sx={{ minWidth: 250 }} onClick={() => imageClick("schoellerDiagram")}>
           <img
             src={`http://127.0.0.1:5000/graph/schoellerDiagram/${props.id}`}
             alt="schoellerDiagram"
             loading="lazy"
             width="250px"
             height="176.57px"
-          onClick={() => imageClick("schoellerDiagram")}
-
           />
+
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              Schoeller Diagram
+            </Typography>
+          </CardContent>
+          
+        </Card>
       </Stack>
       <Dialog open={open} onClose={handleClose} fullScreen={fullScreen}>
         <DialogTitle>{graphName}</DialogTitle>
