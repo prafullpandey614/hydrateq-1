@@ -102,7 +102,7 @@ const Analysis = () => {
   return (
     <Box
       minHeight="100vh"
-      bgcolor="#FBF9F9 "
+      // bgcolor="#FBF9F9 "
     >
       <Stack>
       <ToggleButtonGroup
@@ -112,8 +112,8 @@ const Analysis = () => {
   aria-label="Platform"
 >
   
-  <ToggleButton value="web">Interpretaion</ToggleButton>
-  <ToggleButton value="android">Data</ToggleButton>
+  {/* <ToggleButton value="web">Interpretaion</ToggleButton>
+  <ToggleButton value="android">Data</ToggleButton> */}
 </ToggleButtonGroup>
       </Stack>
 {!Display ? (<Typography>No sample found in your Project </Typography>): ShowData?(
@@ -122,9 +122,15 @@ const Analysis = () => {
   </Stack>
   ):
       (<div>
-      <Grid container spacing={2} >
+      <Grid container spacing={2}  mt={3}>
+        <Grid item xs={2}>
         <NewSidebar project={pro} all_projects={project} />
-        <Grid item xs={9} mr={1}>
+        </Grid>
+        <Grid item xs={10}>
+          <Box 
+          pl={1}
+          bgcolor="#FBF9F9 "
+          >
           <Stack spacing={3} mt={2}>
           <Typography variant='h5' align='center' sx={{ textDecoration: 'underline' }} > Data Processing</Typography>
           <Stack direction="row" spacing={3}>
@@ -169,6 +175,7 @@ const Analysis = () => {
             (<Statistics desc={description}  sar={sar}/>)
             }
           </Stack>
+          </Box>
         </Grid>
       </Grid> 
       <Stack spacing={2} mt={2}> <Typography  sx={{ textDecoration: 'underline' }} variant='h5' align='center'> Interpretaion</Typography></Stack>

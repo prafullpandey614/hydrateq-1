@@ -6,12 +6,12 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import Projects from "./components/Projects";
 import { Home } from "./screens/Home";
 import ProjectScreen from "./screens/ProjectScreen";
 import NotFound from "./screens/NotFound";
-import Prafull from "./screens/Prafull";
 import Analysis from "./screens/Analysis";
+import DataForAll from "./screens/DataForAll";
+import StacticAnalysis  from "./screens/StacticAnalysis";
 function App() {
   return (
     <div>
@@ -19,7 +19,8 @@ function App() {
         <Route exact path="/" element={<Home/>}/>
         <Route  path="/project/:id" element={ <ProjectScreen/>} />
         <Route path="/analysis/:id" element={<Analysis/>}/>
-        <Route path="/prafull" element={<Prafull/>}/>
+        <Route path="/data" element={<DataForAll/>}/>
+        <Route path="/analysis" element={<StacticAnalysis/>}/>
         <Route path="*" element={<NotFound/>}/>
         </Routes>
     </div>

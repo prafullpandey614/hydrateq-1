@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { Typography, Stack, Card, Button, CardActionArea } from "@mui/material";
+import { Typography, Stack, Card, Button, CardActionArea , Box ,Chip} from "@mui/material";
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -8,6 +8,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import DialogTitle from '@mui/material/DialogTitle';
 import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
+import Logo from "../images/hydrateq.svg";
 const Projects = (props) => {
   const [newProject, setNewProject] = React.useState(null)
   useEffect(() => {
@@ -43,35 +44,41 @@ const Projects = (props) => {
         newP.push([res.data.id, name, desc]);
         setNewProject(newP);
         console.log(newProject)
+        navigate("/project/" + res.data.id);
       }).catch(err => {
         console.log(err);
       })
-
+      
   }
-
   return (
-    <Stack>
-      <Stack>
-        {newProject === null ? "" : (newProject.map((project, index) => (
-          <Stack my={1} py={1} key={index}>
-            <Card sx={{ minWidth: 275, minHeight: 40 }} style={{ backgroundColor: "white" }}>
-              <CardActionArea onClick={() => handleRoute(project[0])}>
-                <Stack pt={1} alignItems="center"  ><Typography variant="subtitle1">Project name : {project[1]}</Typography></Stack>
-              </CardActionArea>
-            </Card>
-          </Stack>
-        )))}
-        <Stack>
-          <Card sx={{ minWidth: 275, minHeight: 40 }} style={{ backgroundColor: "white" }}>
+    <Box>
+      <Stack direction="column">
+        <Stack spacing={1} alignItems="center" justifyContent="center"  py={5.5}>
+          <Stack>
+          <img
+          height={400}
+          width={400} 
+          src={Logo} alt="hydrateq"/></Stack>
+          <Card sx={{ width: 275, height: 40 }} style={{ backgroundColor: "white" }}>
             <CardActionArea onClick={handleOnclick}>
-              <Stack direction='row' spacing={1} alignItems="center" justifyContent="center" px={2} py={2}>
-                <CreateNewFolderIcon />
+              <Stack spacing={2} direction="row" alignItems="center" justifyContent="center"  mt={1} >
+                <Stack> <CreateNewFolderIcon /></Stack>
                 <p>new Project</p>
               </Stack>
             </CardActionArea>
           </Card>
         </Stack>
-      </Stack>
+  </Stack>
+  <Box  style={{backgroundColor :"white"}} sx={{ width: 1067 }}>
+    <Typography variant="subtitle1" align="center"> Previous Projects</Typography>
+    <Stack  spacing={2} direction="row" alignItems="center" justifyContent="center">
+{newProject === null ? "" : (newProject.map((project, index) => (
+          <Stack my={1} py={1} key={index}>
+            <Chip label={project[1]} variant="outlined" onClick={() => handleRoute(project[0])} />
+          </Stack>
+        )))}
+        </Stack>
+    </Box>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>New Project</DialogTitle>
         <DialogContent>
@@ -101,7 +108,7 @@ const Projects = (props) => {
           <Button onClick={handleCreate}>Create</Button>
         </DialogActions>
       </Dialog>
-    </Stack>
+    </Box>
   )
 }
 
