@@ -15,7 +15,7 @@ import men from "./Photo/12.jpg";
 import boy from "./Photo/13.jpg";
 import gun from "./Photo/14.jpg";
 
-const Hanuman = () => {
+const Analysis = () => {
   return (
     <>
       <div className="sonu">
@@ -178,4 +178,4 @@ const Hanuman = () => {
   );
 };
 
-export default Hanuman;
+export default Analysis;
