@@ -1,8 +1,14 @@
 import React from 'react'
-import {Grid , Typography, Stack ,TextField} from '@mui/material'
+import {Grid , Typography, Stack ,TextField, Button} from '@mui/material'
 import NewSidebar from '../components/NewSidebar'
-
+import { useNavigate } from "react-router-dom";
 const DataForAll = () => {
+  let navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("clicked create")
+    navigate("/thanks");
+  }
   return (
     <Grid container >
         <Grid item xs={2}
@@ -28,19 +34,30 @@ const DataForAll = () => {
             py={2} px={2}
             >
             <form >
-            <TextField
+              <label> Request for data </label>
+              <Stack spacing={2} mt={3}>
+              <Stack>
+              <TextField
+              style={{ width: 500 }}
           id="outlined-textarea"
-          label="Multiline Placeholder"
-          placeholder="Placeholder"
+          label="Email"
+          placeholder="@gmail.com"
           multiline
         />
-        <TextField
+              </Stack>
+           <Stack >
+           <TextField
           id="outlined-multiline-static"
-          label="Multiline"
+          label=""
           multiline
           rows={4}
-          defaultValue="Default Value"
+          defaultValue="I need data for :"
         />
+           </Stack>
+           <Stack>
+           <Button type = "submit"  onClick={handleSubmit}> Request data</Button>
+           </Stack>
+           </Stack>
             </form>
             </Stack>
         </Grid>

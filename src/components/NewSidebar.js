@@ -56,7 +56,7 @@ const NewSidebar = () => {
           <Divider/>
           <Stack mt={1}>
           <Typography variant="subtitle1" align="center" >
-          <Link href="/" underline="none" color="black">
+          <Link href="/help" underline="none" color="black">
             Help
           </Link></Typography>
           <Typography variant="subtitle1" align="center" >

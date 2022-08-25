@@ -12,6 +12,8 @@ import NotFound from "./screens/NotFound";
 import Analysis from "./screens/Analysis";
 import DataForAll from "./screens/DataForAll";
 import StacticAnalysis  from "./screens/StacticAnalysis";
+import Thanku from "./screens/Thanku";
+import {Help} from "../src/screens/Help";
 function App() {
   return (
     <div>
@@ -21,6 +23,8 @@ function App() {
         <Route path="/analysis/:id" element={<Analysis/>}/>
         <Route path="/data" element={<DataForAll/>}/>
         <Route path="/analysis" element={<StacticAnalysis/>}/>
+        <Route path="/thanks" element={<Thanku/>}/>
+        <Route path="/help" element={<Help/>}/>
         <Route path="*" element={<NotFound/>}/>
         </Routes>
     </div>
