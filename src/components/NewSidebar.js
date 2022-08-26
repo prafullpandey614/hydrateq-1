@@ -64,8 +64,8 @@ const NewSidebar = () => {
             process
           </Link></Typography>
           <Typography variant="subtitle1" align="center" >
-          <Link href="/" underline="none" color="black">
-            Settings
+          <Link href="/graph" underline="none" color="black">
+            graph
           </Link></Typography>
           <Typography variant="subtitle1" align="center" >
           <Link href="/data" underline="none" color="black">

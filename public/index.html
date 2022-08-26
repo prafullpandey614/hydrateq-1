@@ -8,6 +8,14 @@
       name="description"
       content="Web site created using create-react-app"
     />
+    <link rel="stylesheet" href="mapbox/mapbox-gl.css">
+        <link rel="stylesheet" href="css/qgis2web.css">
+        <style>
+        #map {
+            width: 1314px;
+            height: 856px;
+        }
+        </style>
     <!-- Font Awesome -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -54,6 +62,364 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
     <!-- MDB -->
+    <div id="graph">
+
+    
+      <div id="map">
+        <nav id="menu"></nav>
+          <div id="distance" class="distance-container"></div>
+    </div>
+    <script src="js/qgis2web_expressions.js"></script>
+    <script src="./mapbox/mapbox-gl.js"></script>
+    <script src="data/Basin_1.js"></script>
+    <script src="data/Pointsfromtable_2.js"></script>
+    <script src="data/Pointsfromtable_3.js"></script>
+<script src="./mapbox/style.js"></script>
+<script src="./js/Autolinker.min.js"></script>
+<script>
+var map = new mapboxgl.Map({
+container: 'map',
+style: styleJSON,
+center: [91.09217293021838,34.38481874358991],
+zoom: 3,
+bearing: 360.0,
+attributionControl: false
+});
+map.addControl(new mapboxgl.NavigationControl(), 'top-left');
+map.addControl(new mapboxgl.AttributionControl({
+customAttribution: '<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://github.com/mapbox/mapbox-gl-js" target="_blank">Mapbox GL JS</a> &middot; <a href="https://qgis.org" target="_blank">QGIS</a>',
+compact: false
+}));
+var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+
+map.on('click', 'lyr_Basin_1_0', function (e) {
+var description = '<table>\
+                <tr>\
+                    <th scope="row">objectid</th>\
+                    <td>' + (e.features[0].properties['objectid'] !== null ? autolinker.link(e.features[0].properties['objectid'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">baconc</th>\
+                    <td>' + (e.features[0].properties['baconc'] !== null ? autolinker.link(e.features[0].properties['baconc'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">bacode</th>\
+                    <td>' + (e.features[0].properties['bacode'] !== null ? autolinker.link(e.features[0].properties['bacode'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">recode</th>\
+                    <td>' + (e.features[0].properties['recode'] !== null ? autolinker.link(e.features[0].properties['recode'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">state</th>\
+                    <td>' + (e.features[0].properties['state'] !== null ? autolinker.link(e.features[0].properties['state'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">ba_name</th>\
+                    <td>' + (e.features[0].properties['ba_name'] !== null ? autolinker.link(e.features[0].properties['ba_name'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <td colspan="2"><strong>shape_Leng</strong><br />' + (e.features[0].properties['shape_Leng'] !== null ? autolinker.link(e.features[0].properties['shape_Leng'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">shape_Area</th>\
+                    <td>' + (e.features[0].properties['shape_Area'] !== null ? autolinker.link(e.features[0].properties['shape_Area'].toLocaleString()) : '') + '</td>\
+                </tr>\
+            </table>'
+
+new mapboxgl.Popup()
+    .setLngLat(e.lngLat)
+    .setHTML(description)
+    .addTo(map);
+});
+
+// Change the cursor to a pointer when the mouse is over the places layer.
+map.on('mouseenter', 'lyr_Basin_1_0', function () {
+map.getCanvas().style.cursor = 'pointer';
+});
+
+// Change it back to a pointer when it leaves.
+map.on('mouseleave', 'lyr_Basin_1_0', function () {
+map.getCanvas().style.cursor = '';
+});
+map.on('click', 'lyr_Pointsfromtable_2_0', function (e) {
+var description = '<table>\
+                <tr>\
+                    <th scope="row"> S NO</th>\
+                    <td>' + (e.features[0].properties[' S NO'] !== null ? autolinker.link(e.features[0].properties[' S NO'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">SITE_ID</th>\
+                    <td>' + (e.features[0].properties['SITE_ID'] !== null ? autolinker.link(e.features[0].properties['SITE_ID'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">WRIS ID</th>\
+                    <td>' + (e.features[0].properties['WRIS ID'] !== null ? autolinker.link(e.features[0].properties['WRIS ID'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <td colspan="2"><strong>Y</strong><br />' + (e.features[0].properties['Y'] !== null ? autolinker.link(e.features[0].properties['Y'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">X</th>\
+                    <td>' + (e.features[0].properties['X'] !== null ? autolinker.link(e.features[0].properties['X'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">LATITUDE</th>\
+                    <td>' + (e.features[0].properties['LATITUDE'] !== null ? autolinker.link(e.features[0].properties['LATITUDE'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">LONGITUDE</th>\
+                    <td>' + (e.features[0].properties['LONGITUDE'] !== null ? autolinker.link(e.features[0].properties['LONGITUDE'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <td colspan="2">' + (e.features[0].properties['SITE_TYPE'] !== null ? autolinker.link(e.features[0].properties['SITE_TYPE'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <td colspan="2">' + (e.features[0].properties['STATE_NAME'] !== null ? autolinker.link(e.features[0].properties['STATE_NAME'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <td colspan="2">' + (e.features[0].properties['DISTRICT_NAME'] !== null ? autolinker.link(e.features[0].properties['DISTRICT_NAME'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <td colspan="2">' + (e.features[0].properties['TAHSIL_NAME'] !== null ? autolinker.link(e.features[0].properties['TAHSIL_NAME'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <td colspan="2">' + (e.features[0].properties['BLOCK_NAME'] !== null ? autolinker.link(e.features[0].properties['BLOCK_NAME'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <td colspan="2">' + (e.features[0].properties['SITE_NAME'] !== null ? autolinker.link(e.features[0].properties['SITE_NAME'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <td colspan="2">' + (e.features[0].properties['BASIN_NAME'] !== null ? autolinker.link(e.features[0].properties['BASIN_NAME'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <td colspan="2">' + (e.features[0].properties['PROJECT_NAME'] !== null ? autolinker.link(e.features[0].properties['PROJECT_NAME'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <td colspan="2">' + (e.features[0].properties['Year'] !== null ? autolinker.link(e.features[0].properties['Year'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <td colspan="2">' + (e.features[0].properties['PH'] !== null ? autolinker.link(e.features[0].properties['PH'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <td colspan="2">' + (e.features[0].properties['EC'] !== null ? autolinker.link(e.features[0].properties['EC'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <td colspan="2">' + (e.features[0].properties['TH'] !== null ? autolinker.link(e.features[0].properties['TH'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <td colspan="2">' + (e.features[0].properties['TOT_ALKALINITY'] !== null ? autolinker.link(e.features[0].properties['TOT_ALKALINITY'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <td colspan="2">' + (e.features[0].properties['CA'] !== null ? autolinker.link(e.features[0].properties['CA'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <td colspan="2">' + (e.features[0].properties['MG'] !== null ? autolinker.link(e.features[0].properties['MG'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <td colspan="2">' + (e.features[0].properties['NA'] !== null ? autolinker.link(e.features[0].properties['NA'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <td colspan="2">' + (e.features[0].properties['K'] !== null ? autolinker.link(e.features[0].properties['K'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <td colspan="2">' + (e.features[0].properties['FE'] !== null ? autolinker.link(e.features[0].properties['FE'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <td colspan="2">' + (e.features[0].properties['CARBONATE'] !== null ? autolinker.link(e.features[0].properties['CARBONATE'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <td colspan="2">' + (e.features[0].properties['BICARBONATE'] !== null ? autolinker.link(e.features[0].properties['BICARBONATE'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <td colspan="2">' + (e.features[0].properties['CHLORIDE'] !== null ? autolinker.link(e.features[0].properties['CHLORIDE'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <td colspan="2">' + (e.features[0].properties['SULPHATE'] !== null ? autolinker.link(e.features[0].properties['SULPHATE'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <td colspan="2">' + (e.features[0].properties['NITRATE'] !== null ? autolinker.link(e.features[0].properties['NITRATE'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <td colspan="2">' + (e.features[0].properties['FLUORIDE'] !== null ? autolinker.link(e.features[0].properties['FLUORIDE'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <td colspan="2">' + (e.features[0].properties['SAR'] !== null ? autolinker.link(e.features[0].properties['SAR'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <td colspan="2">' + (e.features[0].properties['RSC'] !== null ? autolinker.link(e.features[0].properties['RSC'].toLocaleString()) : '') + '</td>\
+                </tr>\
+            </table>'
+
+new mapboxgl.Popup()
+    .setLngLat(e.lngLat)
+    .setHTML(description)
+    .addTo(map);
+});
+
+// Change the cursor to a pointer when the mouse is over the places layer.
+map.on('mouseenter', 'lyr_Pointsfromtable_2_0', function () {
+map.getCanvas().style.cursor = 'pointer';
+});
+
+// Change it back to a pointer when it leaves.
+map.on('mouseleave', 'lyr_Pointsfromtable_2_0', function () {
+map.getCanvas().style.cursor = '';
+});
+map.on('click', 'lyr_Pointsfromtable_3_0', function (e) {
+var description = '<table id="table">\
+                <tr>\
+                    <th scope="row"> S NO</th>\
+                    <td>' + (e.features[0].properties[' S NO'] !== null ? autolinker.link(e.features[0].properties[' S NO'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">SITE_ID</th>\
+                    <td>' + (e.features[0].properties['SITE_ID'] !== null ? autolinker.link(e.features[0].properties['SITE_ID'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">WRIS ID</th>\
+                    <td>' + (e.features[0].properties['WRIS ID'] !== null ? autolinker.link(e.features[0].properties['WRIS ID'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">Y</th>\
+                    <td>' + (e.features[0].properties['Y'] !== null ? autolinker.link(e.features[0].properties['Y'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <td colspan="2"><strong>X</strong><br />' + (e.features[0].properties['X'] !== null ? autolinker.link(e.features[0].properties['X'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">LATITUDE</th>\
+                    <td>' + (e.features[0].properties['LATITUDE'] !== null ? autolinker.link(e.features[0].properties['LATITUDE'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">LONGITUDE</th>\
+                    <td>' + (e.features[0].properties['LONGITUDE'] !== null ? autolinker.link(e.features[0].properties['LONGITUDE'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">SITE_TYPE</th>\
+                    <td>' + (e.features[0].properties['SITE_TYPE'] !== null ? autolinker.link(e.features[0].properties['SITE_TYPE'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">STATE_NAME</th>\
+                    <td>' + (e.features[0].properties['STATE_NAME'] !== null ? autolinker.link(e.features[0].properties['STATE_NAME'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">DISTRICT_NAME</th>\
+                    <td>' + (e.features[0].properties['DISTRICT_NAME'] !== null ? autolinker.link(e.features[0].properties['DISTRICT_NAME'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">TAHSIL_NAME</th>\
+                    <td>' + (e.features[0].properties['TAHSIL_NAME'] !== null ? autolinker.link(e.features[0].properties['TAHSIL_NAME'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">BLOCK_NAME</th>\
+                    <td>' + (e.features[0].properties['BLOCK_NAME'] !== null ? autolinker.link(e.features[0].properties['BLOCK_NAME'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">SITE_NAME</th>\
+                    <td>' + (e.features[0].properties['SITE_NAME'] !== null ? autolinker.link(e.features[0].properties['SITE_NAME'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">BASIN_NAME</th>\
+                    <td>' + (e.features[0].properties['BASIN_NAME'] !== null ? autolinker.link(e.features[0].properties['BASIN_NAME'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">PROJECT_NAME</th>\
+                    <td>' + (e.features[0].properties['PROJECT_NAME'] !== null ? autolinker.link(e.features[0].properties['PROJECT_NAME'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">Year</th>\
+                    <td>' + (e.features[0].properties['Year'] !== null ? autolinker.link(e.features[0].properties['Year'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">PH</th>\
+                    <td>' + (e.features[0].properties['PH'] !== null ? autolinker.link(e.features[0].properties['PH'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">EC</th>\
+                    <td>' + (e.features[0].properties['EC'] !== null ? autolinker.link(e.features[0].properties['EC'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">TH</th>\
+                    <td>' + (e.features[0].properties['TH'] !== null ? autolinker.link(e.features[0].properties['TH'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">TOT_ALKALINITY</th>\
+                    <td>' + (e.features[0].properties['TOT_ALKALINITY'] !== null ? autolinker.link(e.features[0].properties['TOT_ALKALINITY'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">CA</th>\
+                    <td>' + (e.features[0].properties['CA'] !== null ? autolinker.link(e.features[0].properties['CA'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">MG</th>\
+                    <td>' + (e.features[0].properties['MG'] !== null ? autolinker.link(e.features[0].properties['MG'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">NA</th>\
+                    <td>' + (e.features[0].properties['NA'] !== null ? autolinker.link(e.features[0].properties['NA'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">K</th>\
+                    <td>' + (e.features[0].properties['K'] !== null ? autolinker.link(e.features[0].properties['K'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">FE</th>\
+                    <td>' + (e.features[0].properties['FE'] !== null ? autolinker.link(e.features[0].properties['FE'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">CARBONATE</th>\
+                    <td>' + (e.features[0].properties['CARBONATE'] !== null ? autolinker.link(e.features[0].properties['CARBONATE'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">BICARBONATE</th>\
+                    <td>' + (e.features[0].properties['BICARBONATE'] !== null ? autolinker.link(e.features[0].properties['BICARBONATE'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">CHLORIDE</th>\
+                    <td>' + (e.features[0].properties['CHLORIDE'] !== null ? autolinker.link(e.features[0].properties['CHLORIDE'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">SULPHATE</th>\
+                    <td>' + (e.features[0].properties['SULPHATE'] !== null ? autolinker.link(e.features[0].properties['SULPHATE'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">NITRATE</th>\
+                    <td>' + (e.features[0].properties['NITRATE'] !== null ? autolinker.link(e.features[0].properties['NITRATE'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">FLUORIDE</th>\
+                    <td>' + (e.features[0].properties['FLUORIDE'] !== null ? autolinker.link(e.features[0].properties['FLUORIDE'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">SAR</th>\
+                    <td>' + (e.features[0].properties['SAR'] !== null ? autolinker.link(e.features[0].properties['SAR'].toLocaleString()) : '') + '</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">RSC</th>\
+                    <td>' + (e.features[0].properties['RSC'] !== null ? autolinker.link(e.features[0].properties['RSC'].toLocaleString()) : '') + '</td>\
+                </tr>\
+            </table>'
+
+new mapboxgl.Popup()
+    .setLngLat(e.lngLat)
+    .setHTML(description)
+    .addTo(map);
+});
+
+// Change the cursor to a pointer when the mouse is over the places layer.
+map.on('mouseenter', 'lyr_Pointsfromtable_3_0', function () {
+map.getCanvas().style.cursor = 'pointer';
+});
+
+// Change it back to a pointer when it leaves.
+map.on('mouseleave', 'lyr_Pointsfromtable_3_0', function () {
+map.getCanvas().style.cursor = '';
+});
+
+
+</script>
+</div>
     <script
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.js"
