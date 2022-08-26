@@ -1,0 +1,209 @@
+*{
+    font-family:  sans-serif;
+    /* font-family: 'Bangers'; */
+    /* font-family: 'Edu NSW ACT Fonundatio'; */
+    /* background: rgba(128, 128, 128, 0.219); */
+    scroll-behavior: auto;
+    scroll-margin-bottom: unset;
+}
+.container-side{
+    background-color: rgba(128, 128, 128, 0.219);
+    min-width: 12rem;
+    max-width: 12rem;
+    min-height: 40rem;
+    height: 100%;
+    font-family: sans-serif;
+}
+.cont{
+    /* align-items: top; */
+   
+    display: flex;
+}
+.main-container{
+    background-color: #BEE3F9;
+    width: 100%;
+
+}
+.side{
+    padding: 0 0.3rem;
+    margin: 1rem 0.5rem;
+    text-align: center;
+    padding: 0.2rem 0;
+    font-family: sans-serif;
+    cursor: pointer;
+
+}
+.side :hover{
+    background-color: black;
+    color: white;
+}
+.drop-area{
+    background-color: black;
+}
+.dropzone-area{
+  
+    background-color: #BEE3F9;
+    width: 65%;
+    margin: 0 auto;
+    
+}
+.dropzone-d{
+    /* padding: 2rem ; */
+    width: 30%;
+    margin: 0rem auto;
+    /* border: 2px dashed black; */
+    border-radius: 5px;
+}
+.inp-browse{
+    background-color: #4681F4;
+}
+.icon{
+    width: 8%;
+    border-radius: 50%;
+}
+.logo{
+    width: 100%;
+    font-family:'Aboreto', sans-serif;
+     font-size: 1.2rem;
+    /* align-items: center;
+    align-self: center;
+    margin: auto ;
+    border-radius: 30%; */
+}
+
+
+/* Css Added By Sushant  */
+
+.center-div{
+    /* margin:2rem 0; */
+    /* align-items: center;
+    align-self: center; */
+    /* padding: 0 4rem; */
+    top: 0;
+    background-color: #BEE3F9;
+    
+    /* display: list-item; */
+}
+.center{
+
+    width: 20%;
+    border-radius: 20%;
+    /* position: absolute; */
+    margin: auto;
+    display: flex;
+
+/* background: url(imag); */
+    /* height: 8rem; */
+    /* margin: 2rem 10rem; */
+    /* margin-left: ; */
+    
+}
+.stack-new-pro{
+    border-color: #BEE3F9 ;
+    border-radius: 1rem;
+    padding-bottom: 2rem;
+    box-shadow: none;
+    box-shadow: 0cm;
+}
+.new-pro{
+  
+    background: #4681F4;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: black;
+    border-radius: 1.5rem;
+    font-size: 1.4rem;
+    padding: 1rem 8rem;
+
+    /* padding-bottom: 0; */
+
+}
+.bttn{
+    margin:0 auto;
+    /* margin-left: 4rem; */
+}
+
+/* Onboarding functionality editing */
+project-list {
+   display: inline-flex;
+}
+#heading{
+    padding-top: 1rem;
+    font-family:  sans-serif;
+    font-weight: 50;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.prev-pro{
+    background-color: white;
+    width: 100%;
+    padding-bottom: 3rem;
+    margin: auto;
+}
+.heading{
+    /* background-color: rgb(128, 128, 128); */
+    width: 100%;
+    font-family: serif;
+   
+    /* background-color: rgba(128, 128, 128, 0.219); */
+}
+
+.project-section{
+    background-color: white;
+    bottom: 0;
+   
+}
+.last{
+    height: 100%;
+    min-height: 16rem;
+}
+
+
+/* Browse Button FIle Input Customization */
+label.label input[type="file"] {
+    position: absolute;
+    top: -1000px;
+  }
+  .label {
+    cursor: pointer;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    padding: 5px 15px;
+    margin: auto auto;
+    /* margin-left: 18.5rem; */
+    background: #4681F4;
+    display: inline-block;
+  }
+  .label:hover {
+    background: #5cbd95;
+  }
+  .label:active {
+    background: #4681F4;
+  }
+  .label:invalid+span {
+    color: #4681F4;
+  }
+  .label:valid+span {
+    color: #4681F4;
+  }
+  .btn-generate{
+      border-radius: 2rem;
+      background-color:#4681F4;
+  }
+  .select-file{
+    width: 100%;  
+   
+
+  }
+ 
+  .sample-add{
+      width: 7rem;
+      margin: 0 auto;
+      cursor: pointer;
+      border-radius: 1rem;
+
+      /* margin: auto; */
+  }
+  .sample-add :hover{
+      background-color: #5cbd95;
+  }
