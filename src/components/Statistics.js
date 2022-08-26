@@ -8,7 +8,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import TablePagination from '@mui/material/TablePagination';
-
+import { Button } from "@mui/material";
+import {CSVLink, CSVDownload} from 'react-csv'; 
 const columns = [
   { id: 'name', label: 'Sample Name', minWidth: 120 },
   { id: 'sar', label: 'Sodium adsorption ratio (SAR)', minWidth: 170 },
@@ -91,6 +92,8 @@ const Statistics = (props) => {
     <Typography variant='h5' style={{color:"black"}} align="center"
                  sx={{textDecoration: 'underline'}} > Analysis</Typography>
                  <Stack>
+                  
+                    <Button><CSVLink data={rows} >Download</CSVLink></Button>
           <Typography variant='outline1' style={{color:"black"}} align="center">Max ,Min , SD, Varience </Typography></Stack>
    </Stack>
 <Stack>
@@ -136,12 +139,12 @@ const Statistics = (props) => {
 
 
 <Paper sx={{ width: '100%' }} mt={3}>
+<Button><CSVLink data={rows1} >Download</CSVLink></Button>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
               <TableCell align="center" colSpan={6}>
-               
               SAR,Soluble Na %,RSC And WQI
               </TableCell>
             </TableRow>

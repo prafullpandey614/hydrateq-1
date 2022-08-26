@@ -11,7 +11,8 @@ export const Help = () => {
         <Grid item xs={10}>
           <Box 
           pl={1}
-          bgcolor="#FBF9F9 "
+          bgcolor="
+          #A4b343 "
           >
 <HelpComponents/>
           </Box></Grid></Grid>

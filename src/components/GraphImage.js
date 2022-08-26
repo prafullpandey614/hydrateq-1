@@ -143,11 +143,7 @@ const GraphImage = (props) => {
             width="250px"
             height="176.57px"
           />
-
-
           <CardContent>
-
-
             <Typography gutterBottom variant="h5" component="div">
               Color Piper Diagram
             </Typography>
@@ -181,8 +177,8 @@ const GraphImage = (props) => {
             src={`http://127.0.0.1:5000/graph/${graphName}/${props.id}`}
             alt={graphName}
             loading="lazy"
-            width="fit-content"
-            height="700px"
+            width="1100px"
+            height="450px"
             />
         </DialogContent>
         <DialogActions>

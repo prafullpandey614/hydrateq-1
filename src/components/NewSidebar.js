@@ -4,6 +4,7 @@ import Stack from '@mui/material/Stack';
 import { Divider, Typography, Link, Box, Card } from '@mui/material';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import logo from  "../images/CGWBLogo.jpg"
 const NewSidebar = () => {
   const navigate = useNavigate();
   console.log(window.location.pathname)
@@ -20,9 +21,14 @@ const NewSidebar = () => {
   const [pro,setPro] = React.useState([]);
   return (
     <Box
-
             bgcolor="white"
         >
+          <img 
+          src={logo}
+          alt="logo" 
+          height="120"
+          width="70"
+          />
     <Stack spacing={5}>
       <Typography fontWeight="fontWeightBold" variant='h5' style={{ color: "#FF9900" }} align="center" > Hydrateq</Typography>
       <Stack py={6}  px={4}>
@@ -68,8 +74,8 @@ const NewSidebar = () => {
             graph
           </Link></Typography>
           <Typography variant="subtitle1" align="center" >
-          <Link href="/data" underline="none" color="black">
-          Data for all 
+          <Link href="/photo/1" underline="none" color="black">
+          Single graph 
           </Link></Typography>
           <Typography variant="subtitle1" align="center" >
           <Link href="/" underline="none" color="black">

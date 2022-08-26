@@ -14,6 +14,7 @@ import DataForAll from "./screens/DataForAll";
 import StacticAnalysis  from "./screens/StacticAnalysis";
 import Thanku from "./screens/Thanku";
 import {Help} from "../src/screens/Help";
+import GraphSingle from "./screens/GraphSingle";
 function App() {
   return (
     <div>
@@ -21,6 +22,7 @@ function App() {
         <Route exact path="/" element={<Home/>}/>
         <Route  path="/project/:id" element={ <ProjectScreen/>} />
         <Route path="/analysis/:id" element={<Analysis/>}/>
+        <Route path="/photo/:id" element={<GraphSingle/>}/>
         <Route path="/data" element={<DataForAll/>}/>
         <Route path="/analysis" element={<StacticAnalysis/>}/>
         <Route path="/thanks" element={<Thanku/>}/>

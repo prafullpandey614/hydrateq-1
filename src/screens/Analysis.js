@@ -149,7 +149,7 @@ const Analysis = () => {
             </Typography>
           </CardContent>
         </Card>
-        <Card sx={{ minWidth: 250 }} onClick={() => imageClick("clustring")} >
+        {/* <Card sx={{ minWidth: 250 }} onClick={() => imageClick("clustring")} >
         <img
             src={`http://127.0.0.1:5000/graph/clustring/${params.id}`}
             alt="clustring"
@@ -164,13 +164,13 @@ const Analysis = () => {
             </Typography>
           </CardContent>
 
-        </Card>
+        </Card> */}
     </Stack>
             <Typography variant='h5' style={{ color: "black" }} align="center"
               sx={{ textDecoration: 'underline' }} > Visualization</Typography>
               {(description.length===0)? (<Typography>No data avialble </Typography>):
             ( <Stack spacing={5}><GraphImage id={params.id} /></Stack>)}
-            
+           
             {(description.length===0)? (<Typography>No data avialble </Typography>):
             (<Statistics desc={description}  sar={sar}/>)
             }

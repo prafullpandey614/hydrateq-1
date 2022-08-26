@@ -7,7 +7,7 @@ import drop from "../images/drop.svg";
 import sideupper from "../images/sideupper.svg"
 import EditableTable from '../components/EditableTable';
 import fieldsArr from "../utils/fields";
-//
+import Tabular_input from '../components/Tabular_input';
 import CircularProgress from '@mui/material/CircularProgress';
 
 import { useDropzone } from "react-dropzone";
@@ -16,6 +16,16 @@ import csv from "csv";
 import NewSidebar from '../components/NewSidebar'
 
 const ProjectScreen = () => {
+
+
+
+  const [csvFile , setCsvFile] = useState("");
+  const handleData = (data) => {
+    console.log(data);
+    setCsvFile(data);
+  }
+
+
   const handleRoute = (id) => {
     console.log("route", id)
     navigate(`/analysis/${id}`); //clicked 
@@ -110,6 +120,10 @@ const ProjectScreen = () => {
                   </form>
                   <Stack mt={2}>
                   <Button variant="contained" type="submit" onClick={handleSubmit}>Submit</Button></Stack>
+                  <Stack mt={1}
+            justifyContent="flex-end"
+            alignItems="center">
+            <Button variant="contained" disabled={analysis} onClick={() => handleRoute(params.id)}>Analysis</Button></Stack>
                   {/* <EditableTable
         initWithoutHead
         defaultData={defaultData}
@@ -134,10 +148,14 @@ const ProjectScreen = () => {
               </Stack>}
             </Stack>
           </Box>
-          <Stack mt={1}
+          <Stack direction="row" justifyContent="flex-end" alignItems="flex-start" spacing={6}> 
+          <Tabular_input />
+            </Stack>
+            <Stack mt={1}
             justifyContent="flex-end"
             alignItems="center">
             <Button variant="contained" disabled={analysis} onClick={() => handleRoute(params.id)}>Analysis</Button></Stack>
+            <Stack mt={1}></Stack>
         </Grid>
       </Grid>
     </Box>

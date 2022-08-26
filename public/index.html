@@ -93,7 +93,8 @@ compact: false
 var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
 
 map.on('click', 'lyr_Basin_1_0', function (e) {
-var description = '<table>\
+  conlsole.log("clicked");
+var description = '<table >\
                 <tr>\
                     <th scope="row">objectid</th>\
                     <td>' + (e.features[0].properties['objectid'] !== null ? autolinker.link(e.features[0].properties['objectid'].toLocaleString()) : '') + '</td>\
@@ -132,7 +133,6 @@ new mapboxgl.Popup()
     .setHTML(description)
     .addTo(map);
 });
-
 // Change the cursor to a pointer when the mouse is over the places layer.
 map.on('mouseenter', 'lyr_Basin_1_0', function () {
 map.getCanvas().style.cursor = 'pointer';
@@ -143,7 +143,7 @@ map.on('mouseleave', 'lyr_Basin_1_0', function () {
 map.getCanvas().style.cursor = '';
 });
 map.on('click', 'lyr_Pointsfromtable_2_0', function (e) {
-var description = '<table>\
+var description = '<table id="myTable">\
                 <tr>\
                     <th scope="row"> S NO</th>\
                     <td>' + (e.features[0].properties[' S NO'] !== null ? autolinker.link(e.features[0].properties[' S NO'].toLocaleString()) : '') + '</td>\
@@ -250,7 +250,6 @@ var description = '<table>\
                     <td colspan="2">' + (e.features[0].properties['RSC'] !== null ? autolinker.link(e.features[0].properties['RSC'].toLocaleString()) : '') + '</td>\
                 </tr>\
             </table>'
-
 new mapboxgl.Popup()
     .setLngLat(e.lngLat)
     .setHTML(description)
@@ -267,7 +266,8 @@ map.on('mouseleave', 'lyr_Pointsfromtable_2_0', function () {
 map.getCanvas().style.cursor = '';
 });
 map.on('click', 'lyr_Pointsfromtable_3_0', function (e) {
-var description = '<table id="table">\
+  console.log("clicked");
+var description = '<table id="myTable">\
                 <tr>\
                     <th scope="row"> S NO</th>\
                     <td>' + (e.features[0].properties[' S NO'] !== null ? autolinker.link(e.features[0].properties[' S NO'].toLocaleString()) : '') + '</td>\
@@ -400,7 +400,7 @@ var description = '<table id="table">\
                     <td>' + (e.features[0].properties['RSC'] !== null ? autolinker.link(e.features[0].properties['RSC'].toLocaleString()) : '') + '</td>\
                 </tr>\
             </table>'
-
+  
 new mapboxgl.Popup()
     .setLngLat(e.lngLat)
     .setHTML(description)
@@ -418,7 +418,14 @@ map.getCanvas().style.cursor = '';
 });
 
 
+// sending data to create graph
+
+//gets table
+  
+
+
 </script>
+
 </div>
     <script
       type="text/javascript"
